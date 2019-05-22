@@ -1,4 +1,5 @@
-class Calculus:  
+class Calculus:
+    
     def __init__(self, equat, var):
         self.equat = equat
         self.var = var
@@ -9,14 +10,14 @@ class Calculus:
 
 def helplist():
     
-    print("더할 때: 1+2 꼴로 입력")
+    print("\n더할 때: 1+2 꼴로 입력")
     print("뺄 때: 2-1 꼴로 입력")
     print("곱할 때: 2*1 꼴로 입력")
     print("나눌 때: 2/1 꼴로 입력")
     print("제곱할 때: x^2 꼴로 입력")
     
-    print("\n마지막에는 \' dx\'꼴로 입력. dx 전에 빈칸을 입력\n")
-    print("\' dx\'가 나오기 전까지는 빈칸을 입력하지 말아주세요.")
+    print("마지막에는 \' dx\'꼴로 입력. dx 전에 빈칸을 입력\n")
+    print("\' dx\'가 나오기 전까지는 빈칸을 입력하지 말아주세요.\n")
 
 def redo():
     
@@ -34,7 +35,7 @@ def act():
     print("계산할 식을 알려주세요.")
     print("식을 어떤 형식으로 작성해야 될지 모르겠다면, HELP를 입력해주세요.")
     print("계산기를 끄고 싶다면, TER을 입력해주세요.")
-    database1 = '1234567890+-*/^'
+    database1 = '1234567890e+-*/^'
     problem = input("integrate ")
     
     if problem == 'HELP' or problem == 'help':
@@ -44,13 +45,17 @@ def act():
         return
     else:
         temp = 1
+        if len(problem) < 3:
+            temp = 0
+        elif problem[-2] != 'd':
+            temp = 0
         for i in range(len(problem)-3):
             if problem[i] not in database1 and problem[i] != problem[-1]:
-                print("입력이 잘못되었습니다. 다시 입력해주세요.\n")
                 temp = 0
                 break
             
         if not temp:
+            print("입력이 잘못되었습니다. 다시 입력해주세요.\n")
             act()
         else:
             equat = Calculus(problem[:-3], problem[-1])
@@ -58,6 +63,8 @@ def act():
             print("따라서 답은", ans, "입니다.")
         
         gostop = redo()
+        if gostop and temp:
+            act()
 
 print("친절한 적분계산기에 어서오세요!")
 act()

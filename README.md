@@ -1,2 +1,2 @@
-# Friendly-Calculus-Calculator
-적분계산을 할 때, 내가 맞았는지, 틀렸다면 내가 왜 틀렸는지, 푸는 방법을 모르겠다면 어떻게 풀지를 알 수 있는 계산기를 만들어본다.
+# Friendly-Calculus-Calculator인 것이었던 Light-Refraction
+빛의 경로를 굴절률이 다른 매질을 통과하며 어떻게 바뀌는지 알아본다. 

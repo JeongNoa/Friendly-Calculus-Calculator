@@ -87,11 +87,9 @@ light = sphere(pos = vector((-1) * length/2, thick /2, 5), size = vector(1,1,1),
 
 dt = 1/200
 float_value_adj = None
-time = 0
 while light.pos.y < thick/2 + 1 and light.pos.y > thick/2 * (-1) - 1 and light.pos.x < length / 2 + 1 and \
         light.pos.x > 0 - length / 2 - 1:
     rate(200)
-    time += dt
     light.pos += vel2 * dt
     temp = None
     for i in border_pos:

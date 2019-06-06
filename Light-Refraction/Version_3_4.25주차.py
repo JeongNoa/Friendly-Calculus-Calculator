@@ -13,12 +13,6 @@ def angle_ref(st_ang, st_vel, n1, n2):
     fi_vel = vector(fi_vel_mag * math.sin(fi_ang), (-1) * fi_vel_mag * math.cos(fi_ang), 0)
     return fi_vel, fi_ang, 1
 
-def time_ref(st_ang, st_vel, n1, n2):
-    if n1 * math.sin(st_ang) / n2 >= 1:   #전반사
-        return -1
-    return 1
-
-
 length = float(input("각 층의 가로 길이는 얼마인가요? 100 이상의 값을 입력해주세요."))
 layer_num = int(input("층을 몇 개 입력하실 건가요?"))
 

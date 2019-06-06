@@ -47,7 +47,7 @@ back = box(pos = vector(0,0,0), size = vector(length, thick, 5), color = vector(
 temp_height = 0
 
 for layer in range(len(data)):
-    a = box(pos = vector(0, thick/2 - temp_height - data[layer][1]/2, 5), size = vector(100, data[layer][1], 5), 
+    a = box(pos = vector(0, thick/2 - temp_height - data[layer][1]/2, 5), size = vector(length, data[layer][1], 5), 
             opacity = 0.3, color = vector(random.random(), random.random(), random.random()))
     temp_height += data[layer][1]
     

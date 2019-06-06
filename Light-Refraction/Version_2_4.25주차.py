@@ -73,6 +73,5 @@ while light.pos.y < thick/2 + 1 and light.pos.y > thick/2 * (-1) - 1 and light.p
             temp = i
             break
     if temp and float_value_adj != temp:
-        print(border_pos.index(temp))
         vel2, ang2 = angle_ref(ang2, vel2, data[border_pos.index(temp)][0], data[border_pos.index(temp)+1][0])
         float_value_adj = temp

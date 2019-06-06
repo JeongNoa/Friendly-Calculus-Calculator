@@ -52,7 +52,6 @@ while time_check >= 0 and time_check < len(data) and xpos <= length - math.tan(a
     _, ang2, direc = angle_ref(ang2, vector(0,0,0), data[time_check][0], data[time_check + direc][0])
     time_check += (direc + 1) // 2
     
-    print(timer)
     if xpos > length - math.tan(ang2) * data[time_check][1]:
         timer += (length - xpos) * data[time_check][0] / math.sin(ang2)
         break

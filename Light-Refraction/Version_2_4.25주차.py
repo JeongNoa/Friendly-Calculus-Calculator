@@ -35,8 +35,6 @@ def angle_ref(st_ang, st_vel, n1, n2):
 
 c = 10
 
-time = 0
-
 vel = vector(c * math.sin(ang), (-1) * c * math.cos(ang), 0)
 
 border_pos = []

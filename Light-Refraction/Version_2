@@ -33,10 +33,6 @@ def angle_ref(st_ang, st_vel, n1, n2):
     fi_vel = vector(fi_vel_mag * math.sin(fi_ang), (-1) * fi_vel_mag * math.cos(fi_ang), 0)
     return fi_vel, fi_ang
 
-def time_ref(st_ang, st_vel, n1, n2):
-    if n1 * math.sin(st_ang) / n2 >= 1:   #전반사
-        
-
 c = 10
 
 time = 0

@@ -14,15 +14,9 @@ for i in range(layer_num):
 
 scene = canvas()
 
-data_box = []
-
 back = box(pos = vector(0,0,0), size = vector(100, thick, 5), color = vector(1,1,1))
 
 temp_height = 0
-
-random_nums = vector(random.random(), random.random(), random.random())
-print(random_nums)
-
 
 for layer in range(len(data)):
     a = box(pos = vector(0, thick/2 - temp_height - data[layer][1]/2, 5), size = vector(100, data[layer][1], 5), color = vector(random.random(), random.random(), random.random()))

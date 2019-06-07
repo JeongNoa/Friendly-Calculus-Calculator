@@ -23,11 +23,11 @@ class refract:
         return math.asin(n1 * math.sin(st_ang) / n2), 1
     
     
-    def border(self, thick):
+    def border(self):
         border_pos = []
         border_temp = 0
         for i in range(len(self.data)-1):
-            border_pos.append(thick/2 - border_temp - self.data[i][1])
+            border_pos.append(self.thick/2 - border_temp - self.data[i][1])
             border_temp += self.data[i][1]
         
         return border_pos
@@ -119,7 +119,7 @@ class refract:
         vel = self.speed_check(speed)
         
         self.base(color_layer)
-        self.move(vel, self.border(self.thick))
+        self.move(vel, self.border())
   
         
 a = refract()

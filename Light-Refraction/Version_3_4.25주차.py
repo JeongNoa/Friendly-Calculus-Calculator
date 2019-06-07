@@ -90,11 +90,11 @@ while light.pos.y < thick/2 + 1 and light.pos.y > thick/2 * (-1) - 1 and light.p
         light.pos.x > 0 - length / 2 - 1:
     rate(200)
     light.pos += vel2 * dt
-    temp = None
+    temp = 'None'
     for i in border_pos:
         if light.pos.y < i + 0.1 and light.pos.y > i - 0.1:
             temp = i
             break
-    if temp != None and float_value_adj != temp:
+    if temp != 'None' and float_value_adj != temp:
         vel2, ang2, _ = angle_ref(ang2, vel2, data[border_pos.index(temp)][0], data[border_pos.index(temp)+1][0])
         float_value_adj = temp

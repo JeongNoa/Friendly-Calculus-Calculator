@@ -39,7 +39,7 @@ class refract:
         xpos = 0
         ang = self.ang
         direc = 1
-        while time_check >= 0 and time_check < len(self.data) and xpos <= self.length - math.tan(ang) * self.data[time_check][1]:
+        while time_check >= 0 and time_check < len(self.data):
             timer += self.data[time_check][1] * self.data[time_check][0] / math.cos(ang)
             xpos += math.tan(ang) * self.data[time_check][1]
             if time_check == len(self.data) - 1:
@@ -120,7 +120,7 @@ class refract:
         
         self.base(color_layer)
         self.move(vel, self.border(self.thick))
-        
+  
         
 a = refract()
 a.activate()

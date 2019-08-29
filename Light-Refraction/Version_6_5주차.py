@@ -94,7 +94,6 @@ class refract:
         '''
         입력한 정도의 시간 speed 내에 프로그램을 끝내기 위해 
             굴절률 1에서 진행해야 하는 속도를 계산하는 함수
-
             
         이는 굴절률 1에서의 속도가 1임을 가정하여 걸리는 시간 timer를 구한 다음,
             속도를 timer / speed로 지정
@@ -171,6 +170,22 @@ class refract:
                     size = vector(1,1,1), color = vector(1,1,0), make_trail=True)
         
         
+        n_green = vector(53/255*2, 83/255*2, 10/255*2)
+        body = cylinder(pos = vector(0-self.length/2,10.5+self.thick/2,5), axis = vector(0, -10, 0), color = n_green)
+        head = sphere(pos = vector(0-self.length/2,0.5+self.thick/2,5), radius = 1, color = n_green)
+        wing = box(pos = vector(0-self.length/2,3.5+self.thick/2,5), size = vector(12,1,1), color = n_green)
+        tripath = [vec(0,0,4.5), vec(0,0,5.5)]
+        lwing = [ [0+self.length/2,4+self.thick/2],[0+self.length/2,7.5+self.thick/2],[6+self.length/2,4+self.thick/2],\
+                 [0+self.length/2,4+self.thick/2] ]
+        rwing = [ [0+self.length/2,4+self.thick/2],[0+self.length/2,7.5+self.thick/2],[-6+self.length/2,4+self.thick/2],\
+                 [0+self.length/2,4+self.thick/2] ]
+        backprop = cylinder(pos = vector(-3-self.length/2,10+self.thick/2,5), axis = vector(6,0,0), radius = 0.5, color = n_green)
+        lwing2 = extrusion(path = tripath, shape = lwing, color = n_green)
+        rwing2 = extrusion(path = tripath, shape = rwing, color = n_green)
+        
+        self.target_pos = random.randint(self.length/(-20)+1,self.length/20)*10
+        target = cylinder(pos = vector(self.target_pos,self.thick/(-2)-0.5,0), axis = vector(0, -1, 0), radius = 10)
+        
     def move(self, vel, border_pos):
         '''
         빛의 구를 움직이는 함수
@@ -238,30 +253,62 @@ class refract:
         speed : 프로그램이 진행할 총 시간, float
         '''
         
-        self.length = float(input("각 층의 가로 길이는 얼마인가요? 100 이상의 값을 입력해주세요."))
-        layer_num = int(input("층을 몇 개 입력하실 건가요?"))
+        self.length = random.randint(1,5) * 100
+        layer_num = random.randint(1, 5)
         self.data = []
         color_layer = {1 : vector(1,1,1)}
         self.thick = 0
         
         for i in range(layer_num):
             #각 층에 대한 데이터 입력
-            self.data.append(list(map(float, input(str(i+1)+"번째 층의 굴절률과 두께를 차례대로 입력해주세요.").split())))
+            self.data.append([random.randint(1, 10)/3, random.randint(1, 3)*50])
             self.thick += self.data[-1][1]
             
             if self.data[-1][0] not in color_layer.keys():
                 color_layer[self.data[-1][0]] = vector(random.random(), random.random(), random.random())
                 
-        self.ang = float(input("빛의 첫 입사각은 몇 도인가요?")) * math.pi / 180
-        speed = float(input("몇 초 안에 실행시키고 싶으신가요?"))
+        self.base(color_layer)
+                
+        print("총 층의 개수는", layer_num, "입니다.")
+        for i in range(len(self.data)):
+            print(i+1, "번째 층의 굴절률은", self.data[i][0], "이며, 그 층의 두께는", self.data[i][1], "입니다.")
+            
+        self.ang = float(input("총을 쏠 각도는 얼마인가요?")) * math.pi / 180
+        speed = 5.0
         
         vel = self.speed_check(speed)
         
-        self.base(color_layer)
+
         
         self.move(vel, self.border())
         
-  
+        return self.evaluate()
 
+  
+    def evaluate(self):
+        if self.light.pos.x >= self.target_pos - 10 and self.light.pos.x <= self.target_pos + 10 :
+            return True
+        else:
+            return False
 a = refract()
-a.activate()
+
+t = False
+time = 1
+while not t:
+    t = a.activate()
+    if t:
+        print("Congratulations! You managed to beat the game in", time, "times!")
+    else:
+        T = True
+        print("Bad luck! ")
+        while T:
+            t = input("Would you like to play again? ")
+            if t == 'yes' or t == 'YES':
+                T = False
+                t = False
+            elif t == 'no' or t == 'NO':
+                T = False
+                t = True
+            else:
+                print("Invalid Input.")
+    time += 1
